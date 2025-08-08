@@ -50,6 +50,17 @@ Le projet se décline en 4 grandes parties :
 
 ---
 
+## 📋 Gestion de projet
+
+Pour organiser le travail, répartir les tâches et suivre l'avancement du projet, nous avons utilisé **Trello**.  
+Un tableau commun a été mis en place dès le début du projet afin de :
+
+- Créer et attribuer les tâches à chaque membre
+- Suivre l'état d'avancement (À faire, En cours, Terminé)
+- Visualiser les deadlines et les priorités
+
+---
+
 | Membres de l'équipe         | Informations projet          |
 |----------------------------|------------------------------|
 | FAUCHER Aymeric            | **Organisation** : AJC Formation |
