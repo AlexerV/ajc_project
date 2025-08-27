@@ -50,7 +50,7 @@
                 DECLARE CORDER CURSOR
                 FOR
                 SELECT O.O_NO, O.O_DATE, E.E_NO, E.DEPT, E.LNAME,
-                    E.FNAME, C.C_NO, C.COMPANY, C.ADDRESS,
+                    E.FNAME, E.COM, C.C_NO, C.COMPANY, C.ADDRESS,
                     C.CITY, C.ZIP, C.STATE, D.DNAME
                 FROM ORDERS O
                 INNER JOIN EMPLOYEES E
@@ -136,6 +136,7 @@
            DISPLAY 'EMP-E-NO, ' EMP-E-NO
            DISPLAY 'EMP-FNAME, ' EMP-FNAME
            DISPLAY 'EMP-LNAME, ' EMP-LNAME
+           DISPLAY 'EMP-COM, ' EMP-COM
            DISPLAY 'CUS-C-NO, ' CUS-C-NO
            DISPLAY 'CUS-COMPANY, ' CUS-COMPANY
            DISPLAY 'CUS-ADDRESS, ' CUS-ADDRESS
@@ -148,27 +149,40 @@
 
        WRITE-ORDER.
            MOVE SPACES TO ENR
-           MOVE 'ORD'       TO TYPE-ORD
-           MOVE ORD-O-NO    TO EORD-O-NO
-           MOVE ORD-O-DATE  TO EORD-O-DATE
-           MOVE EMP-E-NO    TO EEMP-E-NO
-           MOVE EMP-FNAME   TO EEMP-FNAME
-           MOVE EMP-LNAME   TO EEMP-LNAME
-           MOVE CUS-C-NO    TO ECUS-C-NO
-           MOVE CUS-COMPANY TO ECUS-COMPANY
-           MOVE CUS-ADDRESS TO ECUS-ADDRESS
-           MOVE CUS-CITY    TO ECUS-CITY
-           MOVE CUS-ZIP     TO ECUS-ZIP
-           MOVE CUS-STATE   TO ECUS-STATE
-           MOVE DEP-DEPT    TO EDEP-DEPT
-           MOVE DEP-DNAME   TO EDEP-DNAME
+           MOVE 'ORD'            TO TYPE-ORD
+           MOVE ORD-O-NO         TO EORD-O-NO
+           MOVE ORD-O-DATE       TO EORD-O-DATE
+           MOVE EMP-E-NO         TO EEMP-E-NO
+           MOVE EMP-FNAME-TEXT   TO EEMP-FNAME
+           MOVE EMP-FNAME-LEN    TO EEMP-FNAME-LEN
+           MOVE EMP-LNAME-TEXT   TO EEMP-LNAME
+           MOVE EMP-LNAME-LEN    TO EEMP-LNAME-LEN
+           MOVE EMP-COM          TO EEMP-COM
+           MOVE CUS-C-NO         TO ECUS-C-NO
+           MOVE CUS-COMPANY-TEXT TO ECUS-COMPANY
+           MOVE CUS-COMPANY-LEN  TO ECUS-COMPANY-LEN
+           MOVE CUS-ADDRESS-TEXT TO ECUS-ADDRESS
+           MOVE CUS-ADDRESS-LEN  TO ECUS-ADDRESS-LEN
+           MOVE CUS-CITY-TEXT    TO ECUS-CITY
+           MOVE CUS-CITY-LEN     TO ECUS-CITY-LEN
+           MOVE CUS-ZIP          TO ECUS-ZIP
+           MOVE CUS-STATE        TO ECUS-STATE
+           MOVE DEP-DEPT         TO EDEP-DEPT
+           MOVE DEP-DNAME-TEXT   TO EDEP-DNAME
+           MOVE DEP-DNAME-LEN    TO EDEP-DNAME-LEN
+           DISPLAY 'EEMP-COM => ' EEMP-COM
            WRITE ENR.
 
        FETCH-ORDER.
+           MOVE SPACE TO DCLEMPLOYEES
+           MOVE SPACE TO DCLORDERS
+           MOVE SPACE TO DCLCUSTOMERS
+           MOVE SPACE TO DCLDEPTS
            EXEC SQL
              FETCH CORDER
              INTO :ORD-O-NO, :ORD-O-DATE, :EMP-E-NO, :DEP-DEPT
-               , :EMP-LNAME, :EMP-FNAME, :CUS-C-NO, :CUS-COMPANY
+               , :EMP-LNAME, :EMP-FNAME, :EMP-COM
+               , :CUS-C-NO, :CUS-COMPANY
                , :CUS-ADDRESS, :CUS-CITY, :CUS-ZIP, :CUS-STATE
                , :DEP-DNAME
            END-EXEC
@@ -176,7 +190,7 @@
 
        DISPLAY-PRODUCT.
            DISPLAY 'ITE-O-NO, ' ITE-O-NO
-           DISPLAY 'ITE-P-NO, ' ITE-P-NO
+           DISPLAY 'PRO-P-NO, ' PRO-P-NO
            DISPLAY 'ITE-QUANTITY, ' ITE-QUANTITY
            DISPLAY 'PRO-DESCRIPTION' PRO-DESCRIPTION
            DISPLAY 'ITE-PRICE, ' ITE-PRICE
@@ -184,15 +198,18 @@
 
        WRITE-PRODUCT.
            MOVE SPACES TO ENR
-           MOVE 'PRO'           TO TYPE-PRO
-           MOVE PRO-P-NO        TO EPRO-P-NO
-           MOVE PRO-DESCRIPTION TO EPRO-DESCRIPTION
-           MOVE PRO-PRICE       TO EPRO-PRICE
-           MOVE ITE-QUANTITY    TO EITE-QUANTITY
-           MOVE ITE-PRICE       TO EITE-PRICE
+           MOVE 'PRO'                TO TYPE-PRO
+           MOVE PRO-P-NO             TO EPRO-P-NO
+           MOVE PRO-DESCRIPTION-TEXT TO EPRO-DESCRIPTION
+           MOVE PRO-DESCRIPTION-LEN  TO EPRO-DESCRIPTION-LEN
+           MOVE PRO-PRICE            TO EPRO-PRICE
+           MOVE ITE-QUANTITY         TO EITE-QUANTITY
+           MOVE ITE-PRICE            TO EITE-PRICE
            WRITE ENR.
 
        FETCH-PRODUCT.
+           MOVE SPACE TO DCLITEMS
+           MOVE SPACE TO DCLPRODUCTS
            EXEC SQL
              FETCH CPROD
              INTO :ITE-O-NO, :PRO-P-NO, :ITE-QUANTITY
