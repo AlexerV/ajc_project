@@ -1,0 +1,37 @@
+      ******************************************************************
+      * DCLGEN TABLE(API2.ITEMS)                                       *
+      *        LIBRARY(API2.SOURCE.DCLGEN(ITE))                        *
+      *        ACTION(REPLACE)                                         *
+      *        LANGUAGE(COBOL)                                         *
+      *        NAMES(ITE-)                                             *
+      *        STRUCTURE(ST-ITE)                                       *
+      *        QUOTE                                                   *
+      *        LABEL(YES)                                              *
+      *        COLSUFFIX(YES)                                          *
+      * ... IS THE DCLGEN COMMAND THAT MADE THE FOLLOWING STATEMENTS   *
+      ******************************************************************
+           EXEC SQL DECLARE API2.ITEMS TABLE
+           ( O_NO                           DECIMAL(3, 0) NOT NULL,
+             P_NO                           CHAR(3) NOT NULL,
+             QUANTITY                       DECIMAL(2, 0) NOT NULL,
+             PRICE                          DECIMAL(5, 2) NOT NULL
+           ) END-EXEC.
+      ******************************************************************
+      * COBOL DECLARATION FOR TABLE API2.ITEMS                         *
+      ******************************************************************
+       01  ST-ITE.
+      *    *************************************************************
+      *                       O_NO
+           10 ITE-O-NO             PIC S9(3)V USAGE COMP-3.
+      *    *************************************************************
+      *                       P_NO
+           10 ITE-P-NO             PIC X(3).
+      *    *************************************************************
+      *                       QUANTITY
+           10 ITE-QUANTITY         PIC S9(2)V USAGE COMP-3.
+      *    *************************************************************
+      *                       PRICE
+           10 ITE-PRICE            PIC S9(3)V9(2) USAGE COMP-3.
+      ******************************************************************
+      * THE NUMBER OF COLUMNS DESCRIBED BY THIS DECLARATION IS 4       *
+      ******************************************************************
