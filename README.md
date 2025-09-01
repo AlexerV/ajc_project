@@ -38,6 +38,38 @@ Le projet se décline en 4 grandes parties :
 
 ---
 
+## 🔧 Installation
+
+### 🗂️ Partie 1 – Importation des nouveaux produits
+
+- `PRO15` → Compilation et exécution du programme principal.
+
+### 📦 Partie 2 – Intégration des ventes étrangères
+
+- `JCCONDAT` → Compiler le sous programme de la conversion de la date.
+
+- `JCVENTES` → Compiler le programme principal.
+
+- `JEVENTES` → Exécuter le programme principal.
+
+### 🧾 Partie 3 – Génération des factures
+
+- `JCDTEXT` → Compilation sous-programme affichage date
+- `JCEXTRACT` → Compilation et execution du programme extraction de base de données. Résultat dans `APIX.PROJET.EXTRACT.DATA`
+
+- `JCFACT` → Compilation du programme de création de facture
+
+- `JEFACT` → Execution du programme de création de facture.
+  - En entrée → Le sous-programme `DATETEXT` et le fichier `APIX.PROJET.EXTRACT.DATA`
+  - En sortie → Le fichier `APIX1.PROJET.FACTURE.DATA`
+
+### 🖥️ Partie 4 – IHM CICS pour l’ajout de pièces
+
+
+
+
+---
+
 ## 🛠️ Outils & Technologies
 
 - **COBOL** (traitement de fichiers et accès base de données)
