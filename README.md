@@ -2,7 +2,7 @@
 
 ## 📌 Contexte
 
-Le projet MAINFRAME a été réalisé dans le cadre d'une mission confiée par la société **AJCFRAME**, spécialisée dans la vente de produits technologiques. L'objectif est de traiter, stocker, et exploiter des données issues de fichiers séquentiels et d’interagir avec une base de données, tout en mettant en œuvre des traitements COBOL et une interface CICS.
+Le projet MAINFRAME a été réalisé dans le cadre d'une mission confiée par la société **AJCFRAME**, spécialisée dans la vente de produits technologiques. L'objectif est de traiter, stocker et exploiter des données issues de fichiers séquentiels et d’interagir avec une base de données, tout en mettant en œuvre des traitements COBOL et une interface CICS.
 
 ---
 
@@ -14,7 +14,7 @@ Le projet se décline en 4 grandes parties :
 - Lecture du fichier `PROJET.NEWPRODS.DATA` (fichier CSV semi-structuré).
 - Insertion des nouveaux produits dans la base de données après :
   - Formatage des descriptions (capitalisation).
-  - Conversion automatique des prix vers le dollar via des taux de change.
+  - Conversion automatique des prix en dollar via des taux de change.
   - Prise en compte des devises supplémentaires via une structure évolutive.
 
 ### 📦 Partie 2 – Intégration des ventes étrangères
@@ -35,6 +35,38 @@ Le projet se décline en 4 grandes parties :
 - Interface de saisie sécurisée (authentification via `AJC.EMPLOYE.KSDS`).
 - Ajout de pièces dans le fichier `PROJET.NEWPARTS.KSDS`.
 - Respect d’une nomenclature stricte pour les ressources CICS (Mapsets, Transactions...).
+
+---
+
+## 🔧 Installation
+
+### 🗂️ Partie 1 – Importation des nouveaux produits
+
+- `PRO15` → Compilation et exécution du programme principal.
+
+### 📦 Partie 2 – Intégration des ventes étrangères
+
+- `JCCONDAT` → Compilation du sous programme de la conversion de la date.
+
+- `JCVENTES` → Compilation du programme principal.
+
+- `JEVENTES` → Exécution du programme principal.
+
+### 🧾 Partie 3 – Génération des factures
+
+- `JCDTEXT` → Compilation du sous-programme affichage date
+- `JCEXTRACT` → Compilation et exécution du programme extraction de base de données. Résultat dans `APIX.PROJET.EXTRACT.DATA`
+
+- `JCFACT` → Compilation du programme de création de facture
+
+- `JEFACT` → Exécution du programme de création de facture.
+  - En entrée → Le sous-programme `DATETEXT` et le fichier `APIX.PROJET.EXTRACT.DATA`
+  - En sortie → Le fichier `APIX1.PROJET.FACTURE.DATA`
+
+### 🖥️ Partie 4 – IHM CICS pour l’ajout de pièces
+
+
+
 
 ---
 
