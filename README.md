@@ -65,7 +65,7 @@ Le projet se décline en 4 grandes parties :
 
 ### 🖥️ Partie 4 – IHM CICS pour l’ajout de pièces
 
-## Etape 1 - Création des fichiers
+#### Etape 1 - Création des fichiers
 
  - `JCEMPKSD` → Suppression / Création du fichier EMPLOYEES.KSDS
  - `JCNPTKSD` → Suppression / Création du fichier NEWPARTS.KSDS
@@ -78,7 +78,7 @@ Le projet se décline en 4 grandes parties :
  - `CEDA INS FILE(PARTS1) GROUP(API1)`
  - `CEMT SET FILE(PARTS1) ADD` - on rajoute le droit d'ajouter des lignes au fichier
 
-## Etape 2 - Compilation des Mapsets
+#### Etape 2 - Compilation des Mapsets
 
  - `JCA1LGMS` → Compilation du MAPSET de login en utilisant en entrée 'BMS(MS1LOG)'
  - `JCA1NPMS` → Compilation du MAPSET d'ajout en utilisant en entrée 'BMG(MS1NPT)'
@@ -95,7 +95,7 @@ Le projet se décline en 4 grandes parties :
  - `CECI SEND MAP(MAP1LOG) MAPSET(MS1LOG)`
  - `CECI SEND MAP(MAP1NPT) MAPSET(MS1NPT)`
 
-## Etape 3 - Compilation des programmes
+#### Etape 3 - Compilation des programmes
 
  - `JCA1LOG` → Compilation du programme PGM1LOG
  - `JCA1NPT` → Compilation du programme PG1NPT
@@ -107,20 +107,20 @@ Sur CICS
  - `CEDA DEF PROG(PGM1NPT) GROUP(API1)`
  - `CEDA INS PROG(PGM1NPT) GROUP(API1)`
 
-## Etape 4 - Création des transactions
+#### Etape 4 - Création des transactions
 
  - `CEDA DEF TRANS(T1E1) GROUP(API1) PROG(PGM1LOG)`
  - `CEDA INS TRANS(T1E1) GROUP(API1)`
  - `CEDA DEF TRANS(T1E2) GROUP(API1) PROG(PGM1NPT)`
  - `CEDA INS TRANS(T1E2) GROUP(API1)`
 
-## Etape 5 - Lancer la transaction
+#### Etape 5 - Lancer la transaction
 
  - `T1E1`
 
  (T1E2 causera une erreur si lancé sans s'être log auparavant)
 
-## Etape 6 - Insérer les données dans la base
+#### Etape 6 - Insérer les données dans la base
 
   - `JCTRIM` → Compilation du sous-programme TRIM (utilisé dans INSNPT)
   - `JCINSNPT` → Compilation du programme INSNPT (nécessite le sous-programme TRIM)
