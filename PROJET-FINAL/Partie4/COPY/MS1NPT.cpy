@@ -1,0 +1,124 @@
+       01  MAP1NPTI.
+           02  FILLER PIC X(12).
+           02  DATEJNPL    COMP  PIC  S9(4).
+           02  DATEJNPF    PICTURE X.
+           02  FILLER REDEFINES DATEJNPF.
+             03 DATEJNPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  DATEJNPI  PIC X(8).
+           02  LIBMAPNPL    COMP  PIC  S9(4).
+           02  LIBMAPNPF    PICTURE X.
+           02  FILLER REDEFINES LIBMAPNPF.
+             03 LIBMAPNPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  LIBMAPNPI  PIC X(24).
+           02  HEURENPL    COMP  PIC  S9(4).
+           02  HEURENPF    PICTURE X.
+           02  FILLER REDEFINES HEURENPF.
+             03 HEURENPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  HEURENPI  PIC X(8).
+           02  PNONPL    COMP  PIC  S9(4).
+           02  PNONPF    PICTURE X.
+           02  FILLER REDEFINES PNONPF.
+             03 PNONPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  PNONPI  PIC X(2).
+           02  PNAMENPL    COMP  PIC  S9(4).
+           02  PNAMENPF    PICTURE X.
+           02  FILLER REDEFINES PNAMENPF.
+             03 PNAMENPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  PNAMENPI  PIC X(30).
+           02  COLORNPL    COMP  PIC  S9(4).
+           02  COLORNPF    PICTURE X.
+           02  FILLER REDEFINES COLORNPF.
+             03 COLORNPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  COLORNPI  PIC X(20).
+           02  WEIGHTNPL    COMP  PIC  S9(4).
+           02  WEIGHTNPF    PICTURE X.
+           02  FILLER REDEFINES WEIGHTNPF.
+             03 WEIGHTNPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  WEIGHTNPI  PIC 9(2).
+           02  CITYNPL    COMP  PIC  S9(4).
+           02  CITYNPF    PICTURE X.
+           02  FILLER REDEFINES CITYNPF.
+             03 CITYNPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  CITYNPI  PIC X(20).
+           02  MESS1NPL    COMP  PIC  S9(4).
+           02  MESS1NPF    PICTURE X.
+           02  FILLER REDEFINES MESS1NPF.
+             03 MESS1NPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  MESS1NPI  PIC X(55).
+           02  MESS2NPL    COMP  PIC  S9(4).
+           02  MESS2NPF    PICTURE X.
+           02  FILLER REDEFINES MESS2NPF.
+             03 MESS2NPA    PICTURE X.
+           02  FILLER   PICTURE X(4).
+           02  MESS2NPI  PIC X(56).
+       01  MAP1NPTO REDEFINES MAP1NPTI.
+           02  FILLER PIC X(12).
+           02  FILLER PICTURE X(3).
+           02  DATEJNPC    PICTURE X.
+           02  DATEJNPP    PICTURE X.
+           02  DATEJNPH    PICTURE X.
+           02  DATEJNPV    PICTURE X.
+           02  DATEJNPO  PIC X(8).
+           02  FILLER PICTURE X(3).
+           02  LIBMAPNPC    PICTURE X.
+           02  LIBMAPNPP    PICTURE X.
+           02  LIBMAPNPH    PICTURE X.
+           02  LIBMAPNPV    PICTURE X.
+           02  LIBMAPNPO  PIC X(24).
+           02  FILLER PICTURE X(3).
+           02  HEURENPC    PICTURE X.
+           02  HEURENPP    PICTURE X.
+           02  HEURENPH    PICTURE X.
+           02  HEURENPV    PICTURE X.
+           02  HEURENPO  PIC X(8).
+           02  FILLER PICTURE X(3).
+           02  PNONPC    PICTURE X.
+           02  PNONPP    PICTURE X.
+           02  PNONPH    PICTURE X.
+           02  PNONPV    PICTURE X.
+           02  PNONPO PIC X(2).
+           02  FILLER PICTURE X(3).
+           02  PNAMENPC    PICTURE X.
+           02  PNAMENPP    PICTURE X.
+           02  PNAMENPH    PICTURE X.
+           02  PNAMENPV    PICTURE X.
+           02  PNAMENPO  PIC X(30).
+           02  FILLER PICTURE X(3).
+           02  COLORNPC    PICTURE X.
+           02  COLORNPP    PICTURE X.
+           02  COLORNPH    PICTURE X.
+           02  COLORNPV    PICTURE X.
+           02  COLORNPO  PIC X(20).
+           02  FILLER PICTURE X(3).
+           02  WEIGHTNPC    PICTURE X.
+           02  WEIGHTNPP    PICTURE X.
+           02  WEIGHTNPH    PICTURE X.
+           02  WEIGHTNPV    PICTURE X.
+           02  WEIGHTNPO PIC Z9.
+           02  FILLER PICTURE X(3).
+           02  CITYNPC    PICTURE X.
+           02  CITYNPP    PICTURE X.
+           02  CITYNPH    PICTURE X.
+           02  CITYNPV    PICTURE X.
+           02  CITYNPO  PIC X(20).
+           02  FILLER PICTURE X(3).
+           02  MESS1NPC    PICTURE X.
+           02  MESS1NPP    PICTURE X.
+           02  MESS1NPH    PICTURE X.
+           02  MESS1NPV    PICTURE X.
+           02  MESS1NPO  PIC X(55).
+           02  FILLER PICTURE X(3).
+           02  MESS2NPC    PICTURE X.
+           02  MESS2NPP    PICTURE X.
+           02  MESS2NPH    PICTURE X.
+           02  MESS2NPV    PICTURE X.
+           02  MESS2NPO  PIC X(56).

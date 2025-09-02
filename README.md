@@ -65,8 +65,67 @@ Le projet se décline en 4 grandes parties :
 
 ### 🖥️ Partie 4 – IHM CICS pour l’ajout de pièces
 
+#### Etape 1 - Création des fichiers
 
+ - `JCEMPKSD` → Suppression / Création du fichier EMPLOYEES.KSDS
+ - `JCNPTKSD` → Suppression / Création du fichier NEWPARTS.KSDS
 
+ Sur CICS
+ 
+ - `CEDA DEF FILE(USERS1) GROUP(API1)` puis ajouter le fichier EMPLOYEES.KSDS
+ - `CEDA INS FILE(USERS1) GROUP(API1)`
+ - `CEDA DEF FILE(PARTS1) GROUP(API1)` puis ajouter le fichier NEWPARTS.KSDS
+ - `CEDA INS FILE(PARTS1) GROUP(API1)`
+ - `CEMT SET FILE(PARTS1) ADD` - on rajoute le droit d'ajouter des lignes au fichier
+
+#### Etape 2 - Compilation des Mapsets
+
+ - `JCA1LGMS` → Compilation du MAPSET de login en utilisant en entrée 'BMS(MS1LOG)'
+ - `JCA1NPMS` → Compilation du MAPSET d'ajout en utilisant en entrée 'BMG(MS1NPT)'
+
+ Sur CICS
+
+ - `CEDA DEF MAPSET(MS1LOG) GROUP(API1)`
+ - `CEDA INS MAPSET(MS1LOG) GROUP(API1)`
+ - `CEDA DEF MAPSET(MS1NPT) GROUP(API1)`
+ - `CEDA INS MAPSET(MS1NPT) GROUP(API1)`
+
+ Pour tester les MAPS
+
+ - `CECI SEND MAP(MAP1LOG) MAPSET(MS1LOG)`
+ - `CECI SEND MAP(MAP1NPT) MAPSET(MS1NPT)`
+
+#### Etape 3 - Compilation des programmes
+
+ - `JCA1LOG` → Compilation du programme PGM1LOG
+ - `JCA1NPT` → Compilation du programme PG1NPT
+
+Sur CICS
+
+ - `CEDA DEF PROG(PGM1LOG) GROUP(API1)`
+ - `CEDA INS PROG(PGM1LOG) GROUP(API1)`
+ - `CEDA DEF PROG(PGM1NPT) GROUP(API1)`
+ - `CEDA INS PROG(PGM1NPT) GROUP(API1)`
+
+#### Etape 4 - Création des transactions
+
+ - `CEDA DEF TRANS(T1E1) GROUP(API1) PROG(PGM1LOG)`
+ - `CEDA INS TRANS(T1E1) GROUP(API1)`
+ - `CEDA DEF TRANS(T1E2) GROUP(API1) PROG(PGM1NPT)`
+ - `CEDA INS TRANS(T1E2) GROUP(API1)`
+
+#### Etape 5 - Lancer la transaction
+
+ - `T1E1`
+
+ (T1E2 causera une erreur si lancé sans s'être log auparavant)
+
+#### Etape 6 - Insérer les données dans la base
+
+  - `JCTRIM` → Compilation du sous-programme TRIM (utilisé dans INSNPT)
+  - `JCINSNPT` → Compilation du programme INSNPT (nécessite le sous-programme TRIM)
+
+  - `JCEINSNPT` → Execution du programme INSNPT, lit en entrée le fichier NEWPARTS.KSDS et l'insère dans la base de données.
 
 ---
 
