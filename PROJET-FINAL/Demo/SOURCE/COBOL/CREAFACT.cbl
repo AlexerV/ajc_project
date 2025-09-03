@@ -58,7 +58,7 @@
       * LIBELLE DE NUMERO DE COMMANDE       *
       ***************************************
        01 L-ORDER-TEXT.
-          05 FILLER        PIC X(8)    VALUE 'Order NÂ°'.
+          05 FILLER        PIC X(8)    VALUE 'Order N°'.
           05 O-NO          PIC 9(3).
       ***************************************
       * LIBELLE DE DATE DE COMMANDE         *
