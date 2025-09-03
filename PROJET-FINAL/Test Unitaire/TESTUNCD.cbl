@@ -1,32 +1,48 @@
-000100 IDENTIFICATION DIVISION.
-000200 PROGRAM-ID. TESTUNCD.
-000210
-000300 DATA DIVISION.
-000400 WORKING-STORAGE SECTION.
-000500 01 WS-DATE-FR     PIC X(10) VALUE '10/10/2022'.
-000510 01 WS-DATE-US     PIC X(10) VALUE '26/04/2023'.
-000600 01 WS-FORMAT      PIC X(02).
-000700 01 SEPARATOR      PIC X VALUE SPACE.
-000710
-000800 PROCEDURE DIVISION.
-000900     DISPLAY '==== DEBUT TEST CONVDATE ===='
-000910
-000920* TEST 1 : FORMAT FR
-000930     MOVE 'FR' TO WS-FORMAT
-001000     CALL 'CONVDATE' USING WS-DATE-FR, WS-FORMAT
-001010     DISPLAY 'TEST FORMAT FR'
-001100     DISPLAY 'DATE EN ENTREE : 10/10/2022'
-001300     DISPLAY 'DATE CONVERTIE : ' WS-DATE-FR
-001310
-001320     DISPLAY SPACE
-001400
-001500* TEST 2 : FORMAT US
-001510     MOVE 'US' TO WS-FORMAT
-001520     CALL 'CONVDATE' USING WS-DATE-US, WS-FORMAT
-001530     DISPLAY 'TEST FORMAT US'
-001540     DISPLAY 'DATE EN ENTREE : 2023/04/26'
-001550     DISPLAY 'DATE CONVERTIE : ' WS-DATE-US
-001600
-001700     DISPLAY '==== FIN TEST CONVDATE ===='
-001800
-001900     STOP RUN.
+000100  IDENTIFICATION DIVISION.                                       
+000200  PROGRAM-ID. TESTUNCD.                                          
+000210                                                                 
+000300  DATA DIVISION.                                                 
+000400  WORKING-STORAGE SECTION.                                       
+000500  01 WS-DATE        PIC X(10).                                   
+000600  01 WS-FORMAT      PIC X(02).                                   
+000730  01 EXPECTED-DATE  PIC X(10).                                   
+000740                                                                 
+000750  01 LIB            PIC X(30).                                   
+000751  01 L-SEP          PIC X(30) VALUE ALL "*".                     
+000760                                                                 
+000770  LINKAGE SECTION.                                               
+000780  COPY TESTCONT.                                                 
+000791                                                                 
+000800  PROCEDURE DIVISION USING TEST-CONTEXT.                         
+000900                                                                 
+001000      PERFORM TEST-FR-DATE                                       
+001100      DISPLAY 'RUN ', TESTS-RUN, ' OK ', PASSES, ' KO ', FAILURES
+001200      DISPLAY L-SEP                                              
+001300                                                                 
+001620      PERFORM TEST-US-DATE                                       
+001630      DISPLAY 'RUN ', TESTS-RUN, ' OK ', PASSES, ' KO ', FAILURES
+001640      DISPLAY L-SEP                                              
+001700                                                                 
+001800      GOBACK.                                                    
+001900                                                                 
+002000  APPELS.                                                        
+002100      CALL 'CONVDATE' USING WS-DATE, WS-FORMAT                   
+002200      DISPLAY '******** ' LIB ' *********'                       
+002300      CALL 'ASSEQX' USING BY REFERENCE TEST-CONTEXT              
+002400                         BY CONTENT LIB                          
+002500                         BY CONTENT EXPECTED-DATE                
+002600                         BY CONTENT WS-DATE.                     
+002700                                                                 
+002800  TEST-FR-DATE.                                                  
+002900      MOVE '10/10/2022' TO WS-DATE         
+003000      MOVE 'FR'         TO WS-FORMAT       
+003100      MOVE '10-10-2022' TO EXPECTED-DATE   
+003200      MOVE 'TEST-FR-DATE' TO LIB           
+003300      PERFORM APPELS.                      
+003400                                           
+003500  TEST-US-DATE.                            
+003600      MOVE '26/04/2023' TO WS-DATE         
+003700      MOVE 'US'         TO WS-FORMAT       
+003800      MOVE '2023-04-26' TO EXPECTED-DATE   
+003900      MOVE 'TEST-US-DATE' TO LIB           
+004000      PERFORM APPELS.                      
