@@ -65,7 +65,7 @@
       ***************************************
        01 L-DATE-TEXT.
           05 FILLER        PIC X(7)    VALUE 'Date : '.
-          05 DATE-TEXT     PIC X(9).
+          05 DATE-TEXT     PIC X(10).
       ***************************************
       * AFFICHAGE POURCENTAGE               *
       ***************************************
@@ -99,7 +99,7 @@
       * ON RECUPERE LA TVA EN SYSIN         *
       ***************************************
        GET-RATES.
-            ACCEPT WS-SYSIN FROM SYSIN.
+            ACCEPT WS-SYSIN FROM SYSIN
             COMPUTE E-ST-RATE = WS-ST-RATE * 100,0
             DISPLAY WS-ST-RATE.
 
@@ -229,7 +229,7 @@
            INTO P-DATE
            MOVE EORD-O-NO    TO O-NO
            MOVE L-ORDER-TEXT TO P-O-NO
-           MOVE EORD-O-DATE    TO DATE-TEXT
+           MOVE EORD-O-DATE  TO DATE-TEXT
            MOVE L-DATE-TEXT  TO P-O-DATE
            MOVE SPACE        TO P-CONTACT
            STRING

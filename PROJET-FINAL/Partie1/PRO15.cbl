@@ -25,6 +25,11 @@
        77  FS-PRODUCT           PIC XX.
 
       *--------------------------------------------------------------
+      *  VARIABLE SQL
+      *--------------------------------------------------------------
+       01 ED-SQLCODE PIC +Z(8)9.
+       77 WS-MSG PIC X(20) VALUE 'DEFAULT MSG'.
+      *--------------------------------------------------------------
       *  FLAGS FIN DE FICHIER
       *--------------------------------------------------------------
        77  WS-FLAG-PRODUCT      PIC 9  VALUE 0.
@@ -184,6 +189,7 @@
                                :PRO-DESCRIPTION,
                                :PRO-PRICE)
                     END-EXEC
+                    PERFORM TEST-SQLCODE
               END-READ
            END-PERFORM.
 
@@ -192,6 +198,26 @@
       *--------------------------------------------------------------
            CLOSE PRODUCT
            GOBACK.
+
+       TEST-SQLCODE.
+           EVALUATE TRUE
+                WHEN SQLCODE = ZERO
+                   CONTINUE
+                WHEN SQLCODE = -803
+                   DISPLAY
+                     'ERREUR INSERT : DOUBLON SUR CODE ' PRO-P-NO
+                WHEN SQLCODE > ZERO
+                   IF SQLCODE = +100
+                     DISPLAY  'CODE XX INTROUVABLE POUR OPERATION '
+                   END-IF
+                   MOVE SQLCODE TO ED-SQLCODE
+                   DISPLAY 'WARNING : ' ED-SQLCODE
+                WHEN OTHER
+                   DISPLAY 'MSG -> ' WS-MSG
+                   MOVE SQLCODE TO ED-SQLCODE
+                   DISPLAY 'ANOMALIE ' ED-SQLCODE
+                   PERFORM ABEND-PROG
+           END-EVALUATE.
 
       ****************************************************************
       *  ABEND-PROG
