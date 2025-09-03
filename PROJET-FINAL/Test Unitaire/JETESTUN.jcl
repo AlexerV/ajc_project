@@ -1,11 +1,11 @@
-000001 //API2EUNI JOB (ACCT#),'ALEXIS',CLASS=A,MSGCLASS=H,REGION=4M,       
-000002 //             MSGLEVEL=(1,1),NOTIFY=&SYSUID,COND=(4,LT),TIME=(,30) 
-000003 //*                                                                 
-000004 //       SET SYSUID=API2,                                           
-000005 //           NOMPGM=TESTUNCD                                        
-000006 //* RUN TESTUNCD POUR LE TEST UNITAIRE                              
-000007 //RTESTUN  EXEC PGM=&NOMPGM,COND=(4,LT)                             
-000008 //STEPLIB    DD DSN=&SYSUID..COB.LOAD,DISP=SHR                      
-000009 //SYSOUT     DD SYSOUT=*,OUTLIM=4000                                
-000010 //SYSTSPRT   DD SYSOUT=*,OUTLIM=25000                               
-000011 //SYSIN      DD DUMMY                                               
+000001 //API2EUNI JOB (ACCT#),'ALEXIS',CLASS=A,MSGCLASS=H,REGION=4M,
+000002 //             MSGLEVEL=(1,1),NOTIFY=&SYSUID,COND=(4,LT),TIME=(,30)
+000003 //*
+000004 //       SET SYSUID=API2,
+000005 //           NOMPGM=TESTUNCD
+000006 //* RUN TESTUNCD POUR LE TEST UNITAIRE
+000007 //RTESTUN  EXEC PGM=&NOMPGM,COND=(4,LT)
+000008 //STEPLIB    DD DSN=&SYSUID..COB.LOAD,DISP=SHR
+000009 //SYSOUT     DD SYSOUT=*,OUTLIM=4000
+000010 //SYSTSPRT   DD SYSOUT=*,OUTLIM=25000
+000011 //SYSIN      DD DUMMY
